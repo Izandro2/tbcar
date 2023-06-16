@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+listagem_clientes
+{% endblock %}
+
+{% block main %}
+<h3>Listagem de Cliente
+    <h3>
+
+        <ul class="list-group">
+
+            {% for i in dados %}
+            <li class="list-group-item">
+                Nome: {{i.nome}} <br>
+                Endereço: {% if i.endereco %} {{ i.endereco}} {% endif %}<br>
+                Complemento: {% if i.complemento %} {{ i.complemento}} {% endif %}<br>
+                Bairro: {% if i.bairro %} {{ i.bairro}} {% endif %} <br>
+                Cidade: {% if i.cidade %} {{ i.cidade}} {% endif %} <br>
+                Telefone: {% if i.fone %} {{ i.fone}} {% endif %}<br>
+                E-mail: {% if i.email %} {{ i.email}} {% endif %}<br>
+                {% if i.foto %}
+                <img src="{{ i.foto.url }}" width="200">
+                {% else %}
+                <img src="{% static 'img/perfil_generico.png' %}" width="200">
+                {% endif %}
+
+                <br>
+                <a href="{% url 'url_altera_cliente' i.id %}">Editar</a>
+                <a href="{% url 'url_exclui_cliente' i.id %}">Excluir</a>
+
+                <br>______________________________________________________<br>
+
+            </li>
+            {%endfor%}
+
+            <button onclick="window.location.href='/'">Cancelar</button>
+
+        </ul>
+
+        {% endblock %}

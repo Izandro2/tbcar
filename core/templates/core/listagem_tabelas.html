@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Listagem_Tabelas
+{% endblock %}
+
+{% block main %}
+Listagem de tabelas <br>
+<ul class="list-group">
+
+    {% for i in dados %}
+    <li class="list-group-item">
+
+      Descricao: {% if i.descricao %} {{ i.descricao}} {% endif %}<br>
+      Valor: {% if i.valor %} {{ i.valor}} {% endif %}<br>
+
+    <br>
+      <a href="{% url 'url_altera_tabela' i.id %}" >Editar</a>
+
+    <br>______________________________________________________<br>
+    </li>
+    {%endfor%}
+
+
+    <button onclick="window.location.href='/'">Cancelar</button>
+</ul>
+
+{% endblock %}

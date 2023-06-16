@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Listagem_Rotativo
+{% endblock %}
+
+{% block main %}
+Listagem Rotativo <br>
+<ul class="list-group">
+
+    {% for i in dados %}
+    <li class="list-group-item">
+
+        Veiculo: {% if i.id_veiculo %} {{ i.id_veiculo}} {% endif %}<br>
+        Tabela: {% if i.id_tabela %} {{ i.id_tabela}} {% endif %}<br>
+        Entrada: {% if i.entrada %} {{ i.entrada}} {% endif %}<br>
+        Saida: {% if i.saida %} {{ i.saida}} {% endif %}<br>
+        Pago: {% if i.pago %} {{ i.pago}} {% endif %}<br>
+        Observacoes: {% if i.observacoes %} {{ i.observacoes}} {% endif %}<br>
+        Calcula_total: {% if i.calcula_total %} {{ i.calcula_total}} {% endif %}<br>
+
+        <br>
+
+
+        <a href="{% url 'url_altera_rotativo' i.id %}">Editar</a>
+        <a href="{% url 'url_exclui_rotativo' i.id %}">Excluir</a>
+
+
+        <br>______________________________________________________<br>
+    </li>
+    {%endfor%}
+
+
+    <button onclick="window.location.href='/'">Cancelar</button>
+</ul>
+{% endblock %}

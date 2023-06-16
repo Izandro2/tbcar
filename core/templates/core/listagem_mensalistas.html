@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Listagem_Mensalista
+{% endblock %}
+
+{% block main %}
+Listagem Mensalista <br>
+<ul class="list-group">
+
+    {% for i in dados %}
+    <li class="list-group-item">
+
+        Veiculo: {% if i.id_veiculo %} {{ i.id_veiculo}} {% endif %}<br>
+        Tabela: {% if i.id_tabela %} {{ i.id_tabela}} {% endif %}<br>
+        Observacoes: {% if i.observacoes %} {{ i.observacoes}} {% endif %}<br>
+
+
+        <a href="{% url 'url_altera_mensalista' i.id %}">Editar</a>
+        <a href="{% url 'url_exclui_mensalista' i.id %}">Excluir</a>
+
+
+        <br>______________________________________________________<br>
+    </li>
+    {%endfor%}
+
+
+    <button onclick="window.location.href='/'">Cancelar</button>
+</ul>
+
+{% endblock %}

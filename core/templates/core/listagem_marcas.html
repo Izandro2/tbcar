@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Listagem_Tabelas
+{% endblock %}
+
+{% block main %}
+Listagem de Marcas <br>
+<ul class="list-group">
+
+    {% for i in dados %}
+    <li class="list-group-item">
+
+        nome: {% if i.nome %} {{ i.nome}} {% endif %}
+        <br>
+
+        {% if i.logo %}
+            <img src="{{ i.logo.url }}" width="200">
+            {% else %}
+            <img src="{% static 'img/marca.png' %}" width="200">
+            {% endif %}
+        <br>
+        url: {% if i.url %} {{ i.url}} {% endif %}
+
+    <br>
+            <a href="{% url 'url_altera_marca' i.id %}">Editar</a>
+            <a href="{% url 'url_exclui_marca' i.id %}">Excluir</a>
+
+    <br>______________________________________________________<br>
+    </li>
+    {%endfor%}
+
+
+    <button onclick="window.location.href='/'">Cancelar</button>
+</ul>
+
+{% endblock %}

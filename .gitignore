@@ -1,0 +1,5 @@
+venv
+tbcar/.env
+tbcar/.env
+db.sqlite3
+.idea

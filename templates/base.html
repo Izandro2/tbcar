@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extrahead %}
+    {% endblock %}
+
+</head>
+<body>
+<div class="container-fluid pt-1 pl-2">
+    <div class="row bg-dark" >
+        <div class="col-6">
+
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <!-- Brand -->
+                <a class="navbar-brand" href="/">Home</a>
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Cliente
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/cadastro_cliente/">Cadastro</a>
+                            <a class="dropdown-item" href="/listagem_clientes/">Listagem</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+                            Veículo
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/cadastro_veiculo/">Cadastro</a>
+                            <a class="dropdown-item" href="/listagem_veiculos/">Listagem</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                            Movimentação
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/cadastro_mensalista/">Cadastro Mensalista</a>
+                            <a class="dropdown-item" href="/listagem_mensalistas/">Listagem Mensalistas</a>
+                            <a class="dropdown-item" href="/cadastro_rotativo/">Cadastro Rotativo</a>
+                            <a class="dropdown-item" href="/listagem_rotativos/">Listagem Rotativos</a>
+                        </div>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop3" data-toggle="dropdown">
+                            Tabela
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/cadastro_tabela/">Cadastro</a>
+                            <a class="dropdown-item" href="/listagem_tabelas/">Listagem</a>
+                        </div>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop4" data-toggle="dropdown">
+                            Marcas
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/cadastro_marca/">Cadastro</a>
+                            <a class="dropdown-item" href="/listagem_marcas/">Listagem</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="col-3 bg-dark mt-2" >
+
+
+            <form class="form-inline" method="post">
+                {% csrf_token%}
+                <input name="pesquisa_input" class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="col-3 bg-dark text-white mt-3">
+            {% if user.get_username %}
+            Bem vindo(a) {{user.get_username}} (&nbsp;
+            <a href="/admin/">admin</a>) |
+            <a href="/accounts/logout/">Logout</a>)
+            {% else %}
+            Usuário não autenticado(a) (
+            <a href="/accounts/login/">Login</a>
+            <a href="/accounts/registrar">Registrar</a>
+            {%endif %}
+
+        </div>
+    </div>
+    {% block main %}
+    {% endblock %}
+</div>
+</body>
+</html>
